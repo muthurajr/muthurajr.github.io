@@ -3,6 +3,9 @@ layout: post
 title: Application Template for Spark Scala with Gradle
 subtitle: Sharing my tips for developing an application on local desktop and automating the complete build process using Apache Spark with Scala
 image: /img/posts/2020/blog-1-spark-template.png
+permalink: /blog/spark-scala-template/
+date: 2020-04-08 13:00:00 -0400
+tags: [apache spark, scala, gradle, project template, local development]
 ---
 
 [**Apache Spark**][77d2c00b] is the unified analytics engine for large scale data processing. Although it supports writing applications in **Java, Scala, Python, R, SQL**; Scala is preferred by many(especially by me) to develop applications due to its engine's nativity. Furthermore, developing applications utilizing Spark on local desktop, automating build, testing and distribution can be done in multiple ways - [**Gradle**][98d0a221] based build automation is one of the option.

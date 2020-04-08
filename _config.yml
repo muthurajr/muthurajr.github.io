@@ -22,7 +22,7 @@ description: Blogs of a Big Data Engineer
 navbar-links:
   Home: "index"
   Projects: "projects"
-  About Me / IaaS: "aboutme"
+  About Me / IaaB: "aboutme"
   Resources: "resources"
   Search: "search"
 
