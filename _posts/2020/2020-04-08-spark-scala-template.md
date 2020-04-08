@@ -176,6 +176,23 @@ project(":spark1"){
     }
 }
 ```
+## Library Versions
+All the library versions are controlled through "gradle.properties" file, which makes life easier to chose between different versions. An example below:
+
+```
+scala_version=2.11
+scoverage_minimum_rate=0.95
+spotbugs_level=high
+project_version=local
+scalastyle_fail_on_warning=false
+spark_version=2.4.5
+spark_testing_base_version=2.4.5_0.14.0
+logback_classic_version=1.2.3
+log4j_over_slf4j_version=1.7.25
+scopt_version=3.7.1
+scala_test_version=3.0.1
+junit_version=4+
+```
 
 This completes your project setup and configurations. The builds can be easily automated on local or CI pipeline with the listed commands in the project directory.
 * Complete build - "./gradlew build"
