@@ -21,14 +21,14 @@ This tutorial will guide you to get started with a full fledged Spark applicatio
 * Scala plugin in case of IDE.
 
 ## Build with Gradle
-Gradle; an open source build automation tool expressed in Groovy is used for accelerating the developer productivity. Gradle wrapper is used for  installing and maintaining the version stability across any environment. 
+Gradle; an open source build automation tool expressed in Groovy is used for accelerating the developer's productivity. Gradle wrapper is used for  installing and maintaining the version stability across any environment. 
 
 Setup the Gradle wrapper using [this][dd00bd55].
 
 Below topics will help to define the project properties through build script "build.gradle" for the application using Spark.
 
 ## Managing Dependencies
-The dependencies are managed in "gradle/build.gradle" file.
+
 * Spark libraries are expressed as "compileOnly" dependencies as they are available in the Spark clusters where the job will be executed.
 
 * Other dependent libraries are expressed as "compile" which are further packaged in final application distribution.
@@ -63,12 +63,56 @@ The source packages are organized as functions, services, data, tempdata and a p
 
 * processor - the unified logic to connect various services of an application.
 
-* data, tempdata - case classes corresponding to the data accessed
+* data, tempdata - case classes corresponding to the data accessed.
 
 ![Package](/img/posts/2020/blog-1-packages.png)
 
 ## Unit Testing
-Every class implementation has its test class, and majority of its business functionality testing exists in function's package. Further, when using a multi module project, the test report can be consolidated as shown below.
+Every class implementation has its test class, and majority of its business functionality testing exists in function's package. A sample below which utilizes the DatasetSuiteBase for SparkSession and compares the expected result at the end.
+
+```
+import java.sql.Date
+import com.holdenkarau.spark.testing.DatasetSuiteBase
+import com.muthurajr.sparkgradletemplate.spark1.data.{Customer, Issue}
+import com.muthurajr.sparkgradletemplate.spark1.encoder.ModelEncoder._
+import org.apache.spark.sql.SaveMode
+import org.junit.rules.TemporaryFolder
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
+import org.scalatest.{BeforeAndAfterAll, FunSpec}
+@RunWith(classOf[JUnitRunner])
+class InputReaderServiceTest extends FunSpec with DatasetSuiteBase with BeforeAndAfterAll {
+  var tempFolder: TemporaryFolder = _
+  var directory: String = _
+  override def beforeAll() {
+    super.beforeAll()
+    tempFolder = new TemporaryFolder
+    tempFolder.create()
+    directory = tempFolder.getRoot.getAbsolutePath
+  }
+  override def afterAll() {
+    super.afterAll()
+    tempFolder.delete()
+  }
+  describe("Valid scenario with ") {
+    it("read issue") {
+      //given
+      val issues = spark.createDataset(Array[Issue](Issue(1, 1, "issue1", "description1", Date.valueOf("2019-01-01"), "created")))
+      val path = s"${directory}/sc1/issue/"
+      issues.write.mode(SaveMode.Overwrite).parquet(path)
+
+      //when
+      val actualResult = InputReaderService.readIssue(spark, path)
+
+      //then
+      assertDatasetEquals(issues, actualResult)
+    }
+  }
+}
+```
+
+
+Further, when using a multi module project, the test report can be consolidated as shown below.
 ```
 task testReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/allTests")
@@ -202,7 +246,7 @@ This completes your project setup and configurations. The builds can be easily a
 * Test alone execution -  "./gradlew test"
 * All code analysis and validations - "./gradlew check"
 
-Hope you liked the Spark application template walked through. A complete template is available [here][0ea01428] in Github. You are welcome to collaborate!
+Hope you liked the Spark application template illustrated above. A complete template is available [here][0ea01428] in Github. You are welcome to collaborate!
 
 [77d2c00b]: https://spark.apache.org/ "Apache Spark"
 [98d0a221]: https://gradle.org/ "Gradle"
