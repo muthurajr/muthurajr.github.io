@@ -4,7 +4,7 @@
 title: Muthuraj Ramasamy
 
 # Short description of your site
-description: Blogs of a Big Data Engineer
+description: Personal blogs from a Big Data Engineer
 
 # --- Local development options ---
 # If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
@@ -204,18 +204,8 @@ exclude:
 
 # prose.io config
 prose:
-  rooturl: '_posts'
+  rooturl: ''
   media: 'img'
-  ignore:
-    - 404.html
-    - LICENSE
-    - feed.xml
-    - _config.yml
-    - /_layouts
-    - /_includes
-    - /css
-    - /img
-    - /js
   metadata:
     _posts:
       - name: "layout"
