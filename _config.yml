@@ -178,6 +178,24 @@ paginate_path: "/blog/page:num/"
 kramdown:
   input: GFM
 
+collections:
+  notes-bigdata:
+    output: true
+    permalink: /notes-bigdata/:name
+    sort_by: title
+  notes-devops:
+    output: true
+    permalink: /notes-devops/:name
+    sort_by: title
+  notes-orchestration:
+    output: true
+    permalink: /notes-orchestration/:name
+    sort_by: title
+  notes-webhosting:
+    output: true
+    permalink: /notes-webhosting/:name
+    sort_by: title
+
 # Default YAML values (more information on Jekyll's site)
 defaults:
   -
@@ -194,6 +212,14 @@ defaults:
     values:
       layout: "page"
       show-avatar: true
+  -
+    scope:
+      path: "" # all files
+    values:
+      layout: "note"
+      show-avatar: true
+      comments: true  # add comments to all blog posts
+      social-share: true # add social media sharing buttons to all blog posts
 
 # Use tags index page and make tags on each post clickable
 link-tags: true
@@ -213,7 +239,61 @@ exclude:
 prose:
   rooturl: ''
   media: 'img'
+  ignore:
+    - 404.html
+    - LICENSE
+    - feed.xml
+    - _config.yml
+    - /_layouts
+    - /_includes
+    - /css
+    - /img
+    - /js
   metadata:
+    _notes-bigdata:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "note"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
+    _notes-devops:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "note"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
+    _notes-orchestration:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "note"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
+    _notes-webhosting:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "note"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
     _posts:
       - name: "layout"
         field:
