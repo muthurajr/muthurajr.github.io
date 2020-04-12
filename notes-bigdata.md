@@ -2,6 +2,7 @@
 layout: page
 title: Notes - Big Data
 comments: false
+permalink: /notes/bigdata/
 ---
 <ul>
   {% for note in site.notes-bigdata %}
