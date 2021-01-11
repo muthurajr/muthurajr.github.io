@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Hi, I'm Muthu
-subtitle: Big Data Engineer / Novice Blogger
+subtitle: Software Engineer / Novice Blogger
 use-site-title: true
 bigimg:
   - "/img/clicks/antelope_canyon_sep2019.jpg" : "Antelope Canyon [Sep 2019]"
